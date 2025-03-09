@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp
+  labels:
+    app: webapp
+spec:
+  containers:
+    - name: webapp-container
+      image: 448834494888.dkr.ecr.us-east-1.amazonaws.com/webapp-repo:latest
+      ports:
+        - containerPort: 8080
+      env:
+        - name: DBHOST
+          value: "mysql"   # This should match the MySQL service name in K8s
+        - name: DBUSER
+          value: "root"
+        - name: DBPWD
+          value: "rootpassword"
+        - name: DATABASE
+          value: "employees"
+        - name: DBPORT
+          value: "3306"
+        - name: APP_COLOR
+          value: "blue"   # Change as per preference
+  imagePullSecrets:
+    - name: ecr-secret
