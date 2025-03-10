@@ -1,9 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: mysql-deployment
+  labels:
+    app: mysql
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: mysql
@@ -13,7 +15,7 @@ spec:
         app: mysql
     spec:
       containers:
-        - name: mysql
+        - name: mysql-container
           image: 448834494888.dkr.ecr.us-east-1.amazonaws.com/mysql-repo:latest
           ports:
             - containerPort: 3306

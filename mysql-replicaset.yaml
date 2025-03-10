@@ -2,8 +2,10 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: mysql-rs
+  labels:
+    app: mysql
 spec:
-  replicas: 1 
+  replicas: 3
   selector:
     matchLabels:
       app: mysql
@@ -13,14 +15,14 @@ spec:
         app: mysql
     spec:
       containers:
-      - name: mysql
-        image: 448834494888.dkr.ecr.us-east-1.amazonaws.com/mysql-repo:latest
-        ports:
-        - containerPort: 3306
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: "akshaya123"
-        - name: MYSQL_DATABASE
-          value: "employees"
+        - name: mysql-container
+          image: 448834494888.dkr.ecr.us-east-1.amazonaws.com/mysql-repo:latest
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "akshaya123"
+            - name: MYSQL_DATABASE
+              value: "employees"
       imagePullSecrets:
-      - name: ecr-secret
+        - name: ecr-secret

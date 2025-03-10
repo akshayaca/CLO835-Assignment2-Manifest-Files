@@ -4,10 +4,10 @@ metadata:
   name: webapp
 spec:
   selector:
-    app: webapp
+    app: employees
   ports:
     - protocol: TCP
       port: 8080
       targetPort: 8080
-      nodePort: 30000  # Fixed for stability
+      nodePort: 30000
   type: NodePort

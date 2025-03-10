@@ -2,31 +2,40 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: webapp-rs
+  labels:
+    app: employees
 spec:
-  replicas: 3  
+  replicas: 3
   selector:
     matchLabels:
-      app: webapp
+      app: employees
   template:
     metadata:
       labels:
-        app: webapp
+        app: employees
     spec:
       containers:
-      - name: webapp
-        image: 448834494888.dkr.ecr.us-east-1.amazonaws.com/webapp-repo:latest
-        ports:
-        - containerPort: 8080
-        env:
-        - name: DBHOST
-          value: "mysql"
-        - name: DBUSER
-          value: "root"
-        - name: DBPWD
-          value: "akshaya123"
-        - name: DATABASE
-          value: "employees"
-        - name: DBPORT  
-          value: "3306"
+        - name: webapp-container
+          image: 448834494888.dkr.ecr.us-east-1.amazonaws.com/webapp-repo:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DBHOST
+              value: "mysql"
+            - name: DBUSER
+              value: "root"
+            - name: DBPWD
+              value: "akshaya123"
+            - name: DATABASE
+              value: "employees"
+            - name: DBPORT
+              value: "3306"
       imagePullSecrets:
-      - name: ecr-secret
+        - name: ecr-secret
+
+~                                                                                                                                                                                                                   
+~                                                                                                                                                                                                                   
+~                                                                                                                                                                                                                   
+~                                                                                                                                                                                                                   
+~                                                                                                                                                                                                                   
+~                                     

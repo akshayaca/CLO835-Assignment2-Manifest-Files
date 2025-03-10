@@ -1,19 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp
+  name: webapp-deployment
+  labels:
+    app: employees
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: webapp
+      app: employees
   template:
     metadata:
       labels:
-        app: webapp
+        app: employees
     spec:
       containers:
-        - name: webapp
+        - name: webapp-container
           image: 448834494888.dkr.ecr.us-east-1.amazonaws.com/webapp-repo:latest
           ports:
             - containerPort: 8080
@@ -26,7 +28,7 @@ spec:
               value: "akshaya123"
             - name: DATABASE
               value: "employees"
-            - name: DBPORT  
-              value: "3306"  
+            - name: DBPORT
+              value: "3306"
       imagePullSecrets:
         - name: ecr-secret

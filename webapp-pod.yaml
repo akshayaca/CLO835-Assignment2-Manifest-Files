@@ -16,12 +16,10 @@ spec:
         - name: DBUSER
           value: "root"
         - name: DBPWD
-          value: "rootpassword"
+          value: "akshaya123"
         - name: DATABASE
           value: "employees"
         - name: DBPORT
           value: "3306"
-        - name: APP_COLOR
-          value: "blue"   # Change as per preference
   imagePullSecrets:
     - name: ecr-secret
