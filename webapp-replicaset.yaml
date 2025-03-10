@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: webapp-rs
+  namespace: webapp-ns
   labels:
     app: employees
 spec:
@@ -21,7 +22,7 @@ spec:
             - containerPort: 8080
           env:
             - name: DBHOST
-              value: "mysql"
+              value: "mysql.mysql-ns.svc.cluster.local"
             - name: DBUSER
               value: "root"
             - name: DBPWD
@@ -32,10 +33,3 @@ spec:
               value: "3306"
       imagePullSecrets:
         - name: ecr-secret
-
-~                                                                                                                                                                                                                   
-~                                                                                                                                                                                                                   
-~                                                                                                                                                                                                                   
-~                                                                                                                                                                                                                   
-~                                                                                                                                                                                                                   
-~                                     
